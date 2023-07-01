@@ -266,8 +266,8 @@ function getGreetingParameters(id) {
                 Object.keys(data.entities).forEach(key => {
                     console.log(key, data.entities[key].Name);
                     var option = $("<option />");
-                    option.html(key);
-                    option.val(data.entities[key].Name);
+                    option.html(data.entities[key].Name);
+                    option.val(key);
                     $("#hotlines").append(option);
                 });
             }
