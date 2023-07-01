@@ -263,22 +263,26 @@ function getGreetingParameters(id) {
         },
         success: function(data) {
             if (data.total > 0) {
-Object.keys(data.entities).forEach(key => {
-    console.log(key, data.entities[key].Name);
-});
+                Object.keys(data.entities).forEach(key => {
+                    console.log(key, data.entities[key].Name);
+					var option = $("<option />");
+					option.html(key);
+                    option.val(data.entities[key].Name;
+					$("hotlines").append(option);
+                });
             }
 /*
-            var ddlCustomers = $("#ddlCustomers");
-                var option = $("<option />");
+            var ddlCustomers = ;
+                var option = 
  
                 //Set Customer Name in Text part.
-                option.html(this.Name);
+                
  
                 //Set Customer CustomerId in Value part.
-                option.val(this.CustomerId);
+                
  
                 //Add the Option element to DropDownList.
-                ddlCustomers.append(option);
+                
 */
 
         }
