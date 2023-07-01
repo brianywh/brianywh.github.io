@@ -268,7 +268,7 @@ function getGreetingParameters(id) {
                     var option = $("<option />");
                     option.html(key);
                     option.val(data.entities[key].Name);
-                    $("hotlines").append(option);
+                    $("#hotlines").append(option);
                 });
             }
 /*
