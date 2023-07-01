@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Agent Greeting Recorder</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css" type="text/css" >
+    </head>
+    <body>
+        <div id="tab1">
+            <div id="hotlines">
+                <button id="General Hotlines" class="selectedButton">General Hotline</button>
+                <button id="BVI Hotlines">BVI Hotline</button>
+
+            </div>
+	</div>
+        <div id="tab2">
+            <div id="languages" class="controls">
+                <button id="cantoneseButton" class="selectedButton">Cantonese</button>
+                <button id="englishButton">English</button>
+                <button id="mandarinButton">Mandarin</button>
+            </div>
+	</div>
+        <div class="tabcontent">
+            <div>
+                <p><strong>Current Agent Greeting Prompt:</strong></p>
+                <p id="noPromptBanner"><strong>No Existing Prompt</strong></p>
+                <audio id="currentAudio" controls="controls" src=""></audio>
+            </div>
+            <p><strong>Record New Agent Greeting Prompt:</strong></p>
+            <div id="controls" class="controls">
+                <button id="recordButton">Record</button>
+                <button id="stopButton" disabled>Stop</button>
+            </div>
+		
+            <p><strong>Recording:</strong></p>
+            <ol id="recordingsList"></ol>
+            <div id="upload" class="controls">
+                <button id="uploadButton" disabled>Upload</button>
+            </div>
+
+        </div>
+        <div>
+            <p>Version: 1.0.230621</p>
+	</div>
+		
+        <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+        <script src="js/recorder.js"></script>
+        <script src='js/jquery-1.11.2.min.js'></script>
+        <script src="js/purecloud-platform-client-v2.min.js"></script>
+        <script src="js/app.js"></script>
+
+    </body>
+</html>
