@@ -265,10 +265,10 @@ function getGreetingParameters(id) {
             if (data.total > 0) {
                 Object.keys(data.entities).forEach(key => {
                     console.log(key, data.entities[key].Name);
-					var option = $("<option />");
-					option.html(key);
-                    option.val(data.entities[key].Name;
-					$("hotlines").append(option);
+                    var option = $("<option />");
+                    option.html(key);
+                    option.val(data.entities[key].Name);
+                    $("hotlines").append(option);
                 });
             }
 /*
