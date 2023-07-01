@@ -262,7 +262,25 @@ function getGreetingParameters(id) {
             xhr.setRequestHeader('Authorization', 'bearer ' + token);
         },
         success: function(data) {
-            console.log(data);
+            if (data.total > 0) {
+Object.keys(data.entities).forEach(key => {
+    console.log(key, data.entities[key].Name);
+});
+            }
+/*
+            var ddlCustomers = $("#ddlCustomers");
+                var option = $("<option />");
+ 
+                //Set Customer Name in Text part.
+                option.html(this.Name);
+ 
+                //Set Customer CustomerId in Value part.
+                option.val(this.CustomerId);
+ 
+                //Add the Option element to DropDownList.
+                ddlCustomers.append(option);
+*/
+
         }
     });
 }
