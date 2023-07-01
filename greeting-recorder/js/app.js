@@ -57,7 +57,7 @@ if (window.location.hash) {
     const client = platformClient.ApiClient.instance;
     client.setEnvironment(platformClient.PureCloudRegionHosts.ap_northeast_1);
 //    client.loginImplicitGrant('520c275f-2aeb-47b2-a4cb-34dc33cbccb9', 'https://webpage-hosting.s3-ap-northeast-1.amazonaws.com/agentgreeting/index.html');
-    client.loginImplicitGrant('5b160eca-cece-4ec4-b3fa-dfafdc7e9a6f', 'http://brianywh.42web.io/index.html');
+    client.loginImplicitGrant('5b160eca-cece-4ec4-b3fa-dfafdc7e9a6f', 'https://brianywh.github.io/greeting-recorder/index.html');
 }
 
 function startRecording() {
