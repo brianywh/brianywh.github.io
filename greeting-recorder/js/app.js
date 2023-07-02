@@ -292,6 +292,7 @@ function getResources(username) {
         success: function(data) {
             if (data.total > 0) {
                 prompts = data.entities;
+                checkPromptExists();
 /*                userPromptExist = true;
                 promptId = data.entities[0].id;
                 resources = data.entities[0].resources;
