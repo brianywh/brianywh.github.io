@@ -47,13 +47,8 @@ uploadButton.addEventListener("click", function() {
     uploadRecording(recordedBlob);
 });
 hotlinesSelection.addEventListener("change", function(){
-    console.log(hotlinesSelection.selectedIndex);
-    console.log(hotlinesSelection.options[hotlinesSelection.selectedIndex].text);
     console.log($("#hotlines").val());
 });
-
-
-
 
 
 if (window.location.hash) {
@@ -346,11 +341,17 @@ function uploadRecording(blob) {
 }
 
 function createUserPrompt(blob) {
+    var selectedIndex = $("#hotlines").val();
+    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
+
+    if (!suffix)
+        suffix = "_" + suffix;
+
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/architect/prompts",
         type: "POST",
         data: JSON.stringify({
-            "name": "AgentGreeting_" + username.substr(0, username.indexOf('@')).replace(/[^a-zA-Z0-9 ]/g, ""),
+            "name": "AgentGreeting_" + username.substr(0, username.indexOf('@')).replace(/[^a-zA-Z0-9 ]/g, "") + suffix,
             "description": username
         }),
         processData: false,
