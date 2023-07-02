@@ -14,7 +14,7 @@ var username;
 var userPromptExist = false;
 var promptId;
 var language = "zh-hk";
-var resources, currentResource;
+var resources, currentResource, hotlines;
 var mediaUri = null;
 var uploadUri = null;
 var recordedBlob;
@@ -263,28 +263,15 @@ function getGreetingParameters(id) {
         },
         success: function(data) {
             if (data.total > 0) {
-                Object.keys(data.entities).forEach(key => {
-                    console.log(key, data.entities[key].Name);
+                hotlines = data.entities;
+                Object.keys(hotlines).forEach(key => {
+                    console.log(key, hotlines[key].Name);
                     var option = $("<option />");
-                    option.html(data.entities[key].Name);
+                    option.html(hotlines[key].Name);
                     option.val(key);
                     $("#hotlines").append(option);
                 });
             }
-/*
-            var ddlCustomers = ;
-                var option = 
- 
-                //Set Customer Name in Text part.
-                
- 
-                //Set Customer CustomerId in Value part.
-                
- 
-                //Add the Option element to DropDownList.
-                
-*/
-
         }
     });
 }
