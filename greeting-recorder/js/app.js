@@ -254,8 +254,10 @@ function getGreetingHotlineInfo() {
             if (data.total > 0) {
                 var id = data.entities[0].id;
                 getGreetingParameters(id);
+            } else {
+                // table no defined, only general hotline exists
+                getUsernameAndResources();
             }
-            // table no defined, only general hotline exists
         }
     });
 }
@@ -278,6 +280,8 @@ function getGreetingParameters(id) {
                     $("#hotlines").append(option);
                 });
             }
+
+            getUsernameAndResources();
         }
     });
 }
@@ -318,7 +322,7 @@ function checkPromptExists() {
     var name = "AgentGreeting_" + username.substr(0, username.indexOf('@')).replace(/[^a-zA-Z0-9 ]/g, "") + suffix;
     var prompt = prompts.find(x => x.name === name);
 
-	if (prompt) {
+    if (prompt) {
         userPromptExist = true;
         promptId = data.entities[0].id;
         resources = data.entities[0].resources;
