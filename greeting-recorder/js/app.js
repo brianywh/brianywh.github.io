@@ -28,6 +28,7 @@ var uploadButton = document.getElementById("uploadButton");
 var cantoneseButton = document.getElementById("cantoneseButton");
 var englishButton = document.getElementById("englishButton");
 var mandarinButton = document.getElementById("mandarinButton");
+var hotlinesSelection = document.getElementById("#hotlines");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -45,6 +46,14 @@ mandarinButton.addEventListener("click", function() {
 uploadButton.addEventListener("click", function() {
     uploadRecording(recordedBlob);
 });
+hotlinesSelection.addEventListener("change", function(){
+    console.log(hotlinesSelection.selectedIndex);
+    console.log(hotlinesSelection.selectedIndex.options[hotlinesSelection.selectedIndex].val);
+});
+
+
+
+
 
 if (window.location.hash) {
     token = getParameterByName('access_token');
