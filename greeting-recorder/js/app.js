@@ -47,7 +47,7 @@ uploadButton.addEventListener("click", function() {
     uploadRecording(recordedBlob);
 });
 hotlinesSelection.addEventListener("change", function(){
-    changeLanguage(langage);
+    changeLanguage(language);
 });
 
 
