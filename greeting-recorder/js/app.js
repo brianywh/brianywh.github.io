@@ -48,7 +48,7 @@ uploadButton.addEventListener("click", function() {
 });
 hotlinesSelection.addEventListener("change", function(){
     console.log(hotlinesSelection.selectedIndex);
-    console.log(hotlinesSelection.selectedIndex.options[hotlinesSelection.selectedIndex].val);
+    console.log(hotlinesSelection.options[hotlinesSelection.selectedIndex].val);
 });
 
 
