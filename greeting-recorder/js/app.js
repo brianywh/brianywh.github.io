@@ -324,8 +324,8 @@ function checkPromptExists() {
 
     if (prompt) {
         userPromptExist = true;
-        promptId = data.entities[0].id;
-        resources = data.entities[0].resources;
+        promptId = prompt.id;
+        resources = prompt.resources;
         getUri();
         console.log(mediaUri);
         console.log(uploadUri);
