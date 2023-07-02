@@ -342,15 +342,10 @@ function uploadRecording(blob) {
 
 function createUserPrompt(blob) {
     var selectedIndex = $("#hotlines").val();
-    var suffix = hotlines.find(x => x.key === selectedIndex);
-console.log(selectedIndex);
-console.log(hotlines);
-console.log(suffix);
+    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
 
-//    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
-
-//    if (!suffix)
-//        suffix = "_" + suffix;
+    if (!suffix)
+        suffix = "_" + suffix;
 
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/architect/prompts",
