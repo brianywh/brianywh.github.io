@@ -344,7 +344,7 @@ function createUserPrompt(blob) {
     var selectedIndex = $("#hotlines").val();
     var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
 
-    if (!suffix)
+    if (suffix)
         suffix = "_" + suffix;
 
     $.ajax({
