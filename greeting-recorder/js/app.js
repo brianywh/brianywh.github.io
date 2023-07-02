@@ -14,7 +14,7 @@ var username;
 var userPromptExist = false;
 var promptId;
 var language = "zh-hk";
-var resources, currentResource, hotlines;
+var resources, prompts, hotlines;
 var mediaUri = null;
 var uploadUri = null;
 var recordedBlob;
@@ -47,7 +47,7 @@ uploadButton.addEventListener("click", function() {
     uploadRecording(recordedBlob);
 });
 hotlinesSelection.addEventListener("change", function(){
-    console.log($("#hotlines").val());
+    changeLanguage(langage);
 });
 
 
@@ -203,6 +203,7 @@ function getParameterByName(name) {
 }
 
 function changeLanguage(selectedLanguage) {
+    checkPromptExists();
     language = selectedLanguage;
 
     if (language === "zh-hk") {
@@ -270,7 +271,7 @@ function getGreetingParameters(id) {
             if (data.total > 0) {
                 hotlines = data.entities;
                 Object.keys(hotlines).forEach(key => {
-                    console.log(key, hotlines[key].Name);
+                    console.log(hotlines[key].key, hotlines[key].Name);
                     var option = $("<option />");
                     option.html(hotlines[key].Name);
                     option.val(hotlines[key].key);
@@ -290,12 +291,13 @@ function getResources(username) {
         },
         success: function(data) {
             if (data.total > 0) {
-                userPromptExist = true;
+                prompts = data.entities;
+/*                userPromptExist = true;
                 promptId = data.entities[0].id;
                 resources = data.entities[0].resources;
                 getUri();
                 console.log(mediaUri);
-                console.log(uploadUri);
+                console.log(uploadUri);*/
             } else {
                 userPromptExist = false;
                 console.log("User prompt does not exist.");
@@ -306,11 +308,35 @@ function getResources(username) {
     });
 }
 
+function checkPromptExists() {
+    var selectedIndex = $("#hotlines").val();
+    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
+
+    if (suffix)
+        suffix = "_" + suffix;
+    var name = "AgentGreeting_" + username.substr(0, username.indexOf('@')).replace(/[^a-zA-Z0-9 ]/g, "") + suffix;
+    var prompt = prompts.find(x => x.name === name);
+
+	if (prompt) {
+        userPromptExist = true;
+        promptId = data.entities[0].id;
+        resources = data.entities[0].resources;
+        getUri();
+        console.log(mediaUri);
+        console.log(uploadUri);
+    } else {
+        userPromptExist = false;
+        console.log("User prompt does not exist.");
+        document.getElementById("currentAudio").style.height = "0";
+        document.getElementById("noPromptBanner").style.fontSize = "large";
+    }
+}
+
 function getUri() {
     mediaUri = null;
     uploadUri = null;
 
-    currentResource = resources.find(output => output.id === language);
+    var currentResource = resources.find(output => output.id === language);
     if (currentResource != null) {
         mediaUri = currentResource.mediaUri;
         uploadUri = currentResource.uploadUri;
@@ -346,7 +372,6 @@ function createUserPrompt(blob) {
 
     if (suffix)
         suffix = "_" + suffix;
-console.log("AgentGreeting_" + username.substr(0, username.indexOf('@')).replace(/[^a-zA-Z0-9 ]/g, "") + suffix);
 /*
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/architect/prompts",
