@@ -273,7 +273,7 @@ function getGreetingParameters(id) {
                     console.log(key, hotlines[key].Name);
                     var option = $("<option />");
                     option.html(hotlines[key].Name);
-                    option.val(key);
+                    option.val(hotlines[key].key);
                     $("#hotlines").append(option);
                 });
             }
