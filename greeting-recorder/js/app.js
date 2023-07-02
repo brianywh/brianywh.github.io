@@ -28,7 +28,7 @@ var uploadButton = document.getElementById("uploadButton");
 var cantoneseButton = document.getElementById("cantoneseButton");
 var englishButton = document.getElementById("englishButton");
 var mandarinButton = document.getElementById("mandarinButton");
-var hotlinesSelection = document.getElementById("#hotlines");
+var hotlinesSelection = document.getElementById("hotlines");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
