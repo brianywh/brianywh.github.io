@@ -54,7 +54,7 @@ hotlinesSelection.addEventListener("change", function(){
 if (window.location.hash) {
     token = getParameterByName('access_token');
     getGreetingHotlineInfo();
-    getUsernameAndResources();
+//    getUsernameAndResources();
 
 } else {
     // Obtain a reference to the platformClient object
