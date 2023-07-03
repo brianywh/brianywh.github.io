@@ -19,7 +19,7 @@ var mediaUri = null;
 var uploadUri = null;
 var recordedBlob;
 
-var dataTableName = "Hotline for Greeting Recording";
+var dataTableName = "Hotline1 for Greeting Recording";
 
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
@@ -256,6 +256,7 @@ function getGreetingHotlineInfo() {
                 getGreetingParameters(id);
             } else {
                 // table no defined, only general hotline exists
+                hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
                 getUsernameAndResources();
             }
         }
