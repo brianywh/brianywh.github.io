@@ -19,7 +19,7 @@ var mediaUri = null;
 var uploadUri = null;
 var recordedBlob;
 
-var dataTableName = "Hotline1 for Greeting Recording";
+var dataTableName = "Hotline for Greeting Recording";
 
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
