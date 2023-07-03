@@ -203,8 +203,9 @@ function getParameterByName(name) {
 }
 
 function changeLanguage(selectedLanguage) {
-    checkPromptExists();
     language = selectedLanguage;
+    if (prompts.length > 0)
+        checkPromptExists();
 
     if (language === "zh-hk") {
         $("#cantoneseButton").addClass('selectedButton');
