@@ -227,6 +227,25 @@ function changeLanguage(selectedLanguage) {
     }
 }
 
+function loadHotlineSelectOptions() {
+    Object.keys(hotlines).forEach(key => {
+        console.log(hotlines[key].key, hotlines[key].Name);
+        var option = $("<option />");
+        option.html(hotlines[key].Name);
+        option.val(hotlines[key].key);
+        $("#hotlines").append(option);
+    });
+}
+
+function getHotlineSuffix() {
+    var selectedIndex = $("#hotlines").val();
+    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
+
+    if (suffix)
+        return ("_" + suffix);
+    return "";
+}
+
 function getUsernameAndResources() {
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/users/me",
@@ -257,6 +276,7 @@ function getGreetingHotlineInfo() {
             } else {
                 // table no defined, only general hotline exists
                 hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
+                loadHotlineSelectOptions();
                 getUsernameAndResources();
             }
         }
@@ -273,15 +293,8 @@ function getGreetingParameters(id) {
         success: function(data) {
             if (data.total > 0) {
                 hotlines = data.entities;
-                Object.keys(hotlines).forEach(key => {
-                    console.log(hotlines[key].key, hotlines[key].Name);
-                    var option = $("<option />");
-                    option.html(hotlines[key].Name);
-                    option.val(hotlines[key].key);
-                    $("#hotlines").append(option);
-                });
+                loadHotlineSelectOptions();
             }
-
             getUsernameAndResources();
         }
     });
@@ -312,15 +325,6 @@ function getResources(username) {
             }
         }
     });
-}
-
-function getHotlineSuffix() {
-    var selectedIndex = $("#hotlines").val();
-    var suffix = hotlines.find(x => x.key === selectedIndex).Suffix;
-
-    if (suffix)
-        return ("_" + suffix);
-    return "";
 }
 
 function checkPromptExists() {
