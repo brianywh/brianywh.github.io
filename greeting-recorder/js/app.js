@@ -383,7 +383,7 @@ function uploadRecording(blob) {
 
 function createUserPrompt(blob) {
     var suffix = getHotlineSuffix();
-/*
+
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/architect/prompts",
         type: "POST",
@@ -403,7 +403,7 @@ function createUserPrompt(blob) {
             promptId = data.id;
             createPromptResource(blob);
         }
-    });*/
+    });
 }
 
 function createPromptResource(blob) {
