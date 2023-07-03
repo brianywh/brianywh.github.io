@@ -204,7 +204,7 @@ function getParameterByName(name) {
 
 function changeLanguage(selectedLanguage) {
     language = selectedLanguage;
-    if (prompts.length > 0)
+    if (prompts && prompts.length > 0)
         checkPromptExists();
 
     if (language === "zh-hk") {
