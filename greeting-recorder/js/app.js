@@ -265,7 +265,7 @@ function getUsernameAndResources() {
 }
 
 function getGreetingHotlineInfo() {
-    var datatable_id;
+    var datatable_id = "";
 
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/flows/datatables?name=" + dataTableName,
@@ -279,7 +279,7 @@ function getGreetingHotlineInfo() {
             }
         }
     }).then(
-        if (datatable_id) {
+        if (datatable_id != "") {
             getGreetingParameters(datatable_id);
         } else {
             // table no defined, only general hotline exists
