@@ -279,9 +279,9 @@ function getGreetingHotlineInfo() {
             }
         }
     }).then(
-        if (datatable_id)
+        if (datatable_id) {
             getGreetingParameters(datatable_id);
-        else {
+        } else {
             // table no defined, only general hotline exists
             hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
             loadHotlineSelectOptions();
