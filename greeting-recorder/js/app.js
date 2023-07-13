@@ -203,9 +203,10 @@ function getParameterByName(name) {
 }
 
 function changeLanguage(selectedLanguage) {
-    language = selectedLanguage;
+    // get the prompt id, media if prompts exists
     if (prompts && prompts.length > 0)
         checkPromptExists();
+    language = selectedLanguage;
 
     if (language === "zh-hk") {
         $("#cantoneseButton").addClass('selectedButton');
@@ -264,6 +265,8 @@ function getUsernameAndResources() {
 }
 
 function getGreetingHotlineInfo() {
+    var datatable_id;
+
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/flows/datatables?name=" + dataTableName,
         type: "GET",
@@ -272,16 +275,19 @@ function getGreetingHotlineInfo() {
         },
         success: function(data) {
             if (data.total > 0) {
-                var id = data.entities[0].id;
-                getGreetingParameters(id);
-            } else {
-                // table no defined, only general hotline exists
-                hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
-                loadHotlineSelectOptions();
-                getUsernameAndResources();
+                datatable_id = data.entities[0].id;
             }
         }
-    });
+    }).then(
+        if (datatable_id)
+            getGreetingParameters(datatable_id);
+        else {
+            // table no defined, only general hotline exists
+            hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
+            loadHotlineSelectOptions();
+            getUsernameAndResources();
+        }
+    );
 }
 
 function getGreetingParameters(id) {
