@@ -265,8 +265,6 @@ function getUsernameAndResources() {
 }
 
 function getGreetingHotlineInfo() {
-    var datatable_id = "";
-
     $.ajax({
         url: "https://api.mypurecloud.jp/api/v2/flows/datatables?name=" + dataTableName,
         type: "GET",
@@ -275,19 +273,16 @@ function getGreetingHotlineInfo() {
         },
         success: function(data) {
             if (data.total > 0) {
-                datatable_id = data.entities[0].id;
+                var id = data.entities[0].id;
+                getGreetingParameters(id);
+            } else {
+                // table no defined, only general hotline exists
+                hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
+                loadHotlineSelectOptions();
+                getUsernameAndResources();
             }
         }
-    }).then(
-        if (datatable_id != "") {
-            getGreetingParameters(datatable_id);
-        } else {
-            // table no defined, only general hotline exists
-            hotlines = [{"Suffix": "", "key": "1", "Name": "General Hotline"}];
-            loadHotlineSelectOptions();
-            getUsernameAndResources();
-        }
-    );
+    });
 }
 
 function getGreetingParameters(id) {
