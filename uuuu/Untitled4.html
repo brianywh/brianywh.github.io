@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+<script type="text/javascript" charset="utf-8">
+  (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.mypurecloud.jp/genesys-bootstrap/genesys.min.js', {
+    environment: 'apne1',
+    deploymentId: '097c0e69-077a-4f7b-9cbe-c96203318dc9'
+  });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  Genesys("subscribe", "Launcher.ready" , function(o){
+    console.log("The queue works!");
+  });
+</script>
+
+<script type="text/javascript">
+  function toggleMessenger(){
+    Genesys("command", "Messenger.open", {},
+      function(o){},  // if resolved
+      function(o){    // if rejected
+        Genesys("command", "Messenger.close");
+      }
+    );
+  }
+</script>
+
+ </head>
+ <body>
+<button type="button" id="custom-launcher" onclick="toggleMessenger()">
+  Messenger
+</button>
+ </body>
+</html>
