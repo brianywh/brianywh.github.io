@@ -4,6 +4,8 @@
 function aaaA() {
 	console.log(this);
 	console.log(this.parent);
+
+	this.contentWindow.postMessage("", "https://www.google.com.hk/search?q=yflife");
 }
 
 
